@@ -21,6 +21,7 @@ pipeline {
          stage('Do the deployment') {
             steps {
                 echo ">> Run deploy applications "
+                echo "blal bleh blu"
             }
         }
     }
