@@ -20,9 +20,7 @@ pipeline {
         }
          stage('Do the deployment') {
             steps {
-                echo ">> Run deploy applications "
-                echo "blal bleh blu"
-                echo "please chal ja"
+                echo ">> Run deploy applications bleh bleh"
             }
         }
     }
