@@ -13,7 +13,7 @@ pipeline {
                  branches: [[name: 'master']],
                  userRemoteConfigs: [[
                     url: 'https://github.com/richasingh17/springboot-sampleapp.git',
-                    credentialsId: '',
+                    credentialsId: 'f28c38a6-c27b-4dfe-b7c5-300f532afa93',
                  ]]
                 ])
             }
