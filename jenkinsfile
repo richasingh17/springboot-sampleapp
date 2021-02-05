@@ -14,7 +14,7 @@ pipeline {
                  $class: 'GitSCM',
                  branches: [[name: 'master']],
                  userRemoteConfigs: [[
-                    url: '',
+                    url: 'https://github.com/richasingh17/springboot-sampleapp.git',
                     credentialsId: '',
                  ]]
                 ])
