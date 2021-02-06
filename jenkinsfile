@@ -22,7 +22,7 @@ pipeline {
          stage('Do the deployment') {
             steps {
                 echo ">> Run deploy applications"
-                git clone https://github.com/richasingh17/springboot-sampleapp.git
+                git clone "https://github.com/richasingh17/springboot-sampleapp.git"
                 cd /var/lib/jenkins/springboot-sampleapp
                 ./mvnw package
                 java -jar target/*.jar
