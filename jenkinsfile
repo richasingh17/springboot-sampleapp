@@ -1,5 +1,5 @@
 properties([pipelineTriggers([githubPush()])])
- 
+def folder = new File( 'mvn/artefact' )
 pipeline {
    agent any
    stages {
@@ -32,7 +32,11 @@ pipeline {
       }
       stage('Deploy') {
           steps {
-              sh 'mkdir /mvn/artefact/'
+              if( !folder.exists() ) {
+                 // Create all folders up-to and including B
+                folder.mkdirs()
+              }
+              /*sh 'mkdir -p /mvn/artefact/'*/
               sh 'cp -r target/spring-petclinic*.jar /mvn/artefact/'
           }
       }
