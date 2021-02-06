@@ -32,9 +32,8 @@ pipeline {
       }
       stage('Deploy') {
           steps {
-              dir("/var/lib/jenkins/springboot-sampleapp/target"){
-              sh 'cp -r spring-petclinic*.jar /mvn/artefact'
-          }
+              sh 'mkdir /mvn/artefact/'
+              sh 'cp -r target/spring-petclinic*.jar /mvn/artefact/'
           }
       }
    }
