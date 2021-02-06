@@ -22,6 +22,9 @@ pipeline {
          stage('Do the deployment') {
             steps {
                 echo ">> Run deploy applications"
+                cd springboot-sampleapp
+                ./mvnw package
+                java -jar target/*.jar
             }
         }
     }
