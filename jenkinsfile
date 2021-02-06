@@ -26,9 +26,9 @@ pipeline {
          }
          stage('Deploy') {
             steps {
-                cd /var/lib/jenkins/springboot-sampleapp
+                cd /var/lib/jenkins/springboot-sampleapp/target
                 ./mvnw package
-                java -jar target/\*.jar
+                java -jar spring-petclinic*.jar
             }
          }
     }
