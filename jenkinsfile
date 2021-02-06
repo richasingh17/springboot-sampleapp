@@ -28,15 +28,8 @@ pipeline {
             steps {
                 cd /var/lib/jenkins/springboot-sampleapp/target
                 ./mvnw package
-                java -jar spring-petclinic*.jar
+                cp spring-petclinic*.jar /mnt/artefact
             }
          }
     }
- 
-    /* Cleanup workspace */
-    post {
-       always {
-           deleteDir()
-       }
-   }
 }
