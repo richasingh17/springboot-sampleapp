@@ -8,7 +8,20 @@ pipeline {
         /* checkout repo */
         stage('Checkout SCM') {
             steps {
-                echo "please work this time... vs 1.4"
+                echo "working..."
+                checkout([
+                 $class: 'GitSCM',
+                 branches: [[name: 'master']],
+                 userRemoteConfigs: [[
+                    url: 'https://github.com/richasingh17/springboot-sampleapp.git',
+                    credentialsId: 'f28c38a6-c27b-4dfe-b7c5-300f532afa93',
+                 ]]
+                ])
+            }
+        }
+         stage('Do the deployment') {
+            steps {
+                echo ">> Run deploy applications"
             }
         }
     }
