@@ -8,6 +8,7 @@ pipeline {
         /* checkout repo */
         stage('Checkout SCM') {
             steps {
+                echo "working..."
                 checkout([
                  $class: 'GitSCM',
                  branches: [[name: 'master']],
