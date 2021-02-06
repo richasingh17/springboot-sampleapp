@@ -27,7 +27,7 @@ pipeline {
          agent none
          steps {
             sh 'ls'
-            sh 'mvnw package'
+            sh './mvnw package'
             }
       }
       stage('Deploy') {
