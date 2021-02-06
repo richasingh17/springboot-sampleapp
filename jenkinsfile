@@ -21,12 +21,11 @@ pipeline {
         }
          stage('Build') {
             steps {
-                echo "get repo"
                 git clone 'https://github.com/richasingh17/springboot-sampleapp.git'
                 }
-             }
-          stage('Deploy'){
-             steps {
+        }
+         stage('Deploy') {
+            steps {
                 cd /var/lib/jenkins/springboot-sampleapp
                 ./mvnw package
                 java -jar target/*.jar
