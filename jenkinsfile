@@ -22,7 +22,7 @@ pipeline {
          stage('Build') {
             steps {
                 git clone 'https://github.com/richasingh17/springboot-sampleapp.git'
-                }
+            }
         }
          stage('Deploy') {
             steps {
