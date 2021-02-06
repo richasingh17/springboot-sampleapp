@@ -18,19 +18,19 @@ pipeline {
                  ]]
                 ])
             }
-        }
+         }
          stage('Build') {
             steps {
                 git clone 'https://github.com/richasingh17/springboot-sampleapp.git'
             }
-        }
+         }
          stage('Deploy') {
             steps {
                 cd /var/lib/jenkins/springboot-sampleapp
                 ./mvnw package
                 java -jar target/*.jar
             }
-        }
+         }
     }
  
     /* Cleanup workspace */
