@@ -1,0 +1,7 @@
+---
+- name: Deploy spring petclinic app
+  hosts: localhost
+  gather_facts: true
+  roles:
+  - deployapp
+
