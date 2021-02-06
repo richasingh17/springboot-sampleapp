@@ -28,7 +28,7 @@ pipeline {
             steps {
                 cd /var/lib/jenkins/springboot-sampleapp
                 ./mvnw package
-                java -jar target/*.jar
+                java -jar 'target/*.jar'
             }
          }
     }
