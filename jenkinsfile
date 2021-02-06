@@ -20,7 +20,9 @@ pipeline {
       stage('Clone') {
          agent none
          steps {
-            git 'https://github.com/richasingh17/springboot-sampleapp.git'
+            dir("/var/lib/jenkins/"){
+            git clone 'https://github.com/richasingh17/springboot-sampleapp.git'
+         }
          }
       }
       stage('Build') {
