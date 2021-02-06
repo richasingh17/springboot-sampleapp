@@ -20,19 +20,15 @@ pipeline {
       stage('Clone') {
          agent none
          steps {
-            dir("/var/lib/jenkins/"){
             git 'https://github.com/richasingh17/springboot-sampleapp.git'
-         }
          }
       }
       stage('Build') {
          agent none
          steps {
-            dir("/var/lib/jenkins/springboot-sampleapp"){
             sh 'ls'
             sh 'mvnw package'
             }
-         }
       }
       stage('Deploy') {
           steps {
