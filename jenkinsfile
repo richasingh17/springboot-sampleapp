@@ -20,8 +20,7 @@ pipeline {
       stage('Clone') {
          agent none
          steps {
-            echo "working..."
-            git clone 'https://github.com/richasingh17/springboot-sampleapp.git'
+            git 'https://github.com/richasingh17/springboot-sampleapp.git'
          }
       }
       stage('Build') {
