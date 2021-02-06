@@ -1,35 +1,43 @@
 properties([pipelineTriggers([githubPush()])])
  
 pipeline {
-    /* specify nodes for executing */
-    agent any
- 
-    stages {
-        /* checkout repo */
-        stage('Checkout SCM') {
-            steps {
-                echo "working..."
-                checkout([
-                 $class: 'GitSCM',
-                 branches: [[name: 'master']],
-                 userRemoteConfigs: [[
-                    url: 'https://github.com/richasingh17/springboot-sampleapp.git',
-                    credentialsId: 'f28c38a6-c27b-4dfe-b7c5-300f532afa93',
-                 ]]
-                ])
+   agent any
+   stages {
+      stage('Checkout SCM') {
+         agent none
+         steps {
+            echo "working..."
+            checkout([
+             $class: 'GitSCM',
+             branches: [[name: 'master']],
+             userRemoteConfigs: [[
+                url: 'https://github.com/richasingh17/springboot-sampleapp.git',
+                credentialsId: 'f28c38a6-c27b-4dfe-b7c5-300f532afa93',
+             ]]
+            ])
+         }
+      }
+      stage('Clone') {
+         agent none
+         steps {
+            echo "working..."
+            git clone 'https://github.com/richasingh17/springboot-sampleapp.git'
+         }
+      }
+      stage('Build') {
+         agent none
+         steps {
+            dir("/var/lib/jenkins/springboot-sampleapp"){
+            sh 'mvnw package'
             }
          }
-         stage('Build') {
-            steps {
-                git clone 'https://github.com/richasingh17/springboot-sampleapp.git'
-            }
-         }
-         stage('Deploy') {
-            steps {
-                cd /var/lib/jenkins/springboot-sampleapp/target
-                ./mvnw package
-                cp spring-petclinic*.jar /mnt/artefact
-            }
-         }
-    }
+      }
+      stage('Deploy') {
+          steps {
+              dir("/var/lib/jenkins/springboot-sampleapp/target"){
+              sh 'cp -r spring-petclinic*.jar /mvn/artefact'
+          }
+          }
+      }
+   }
 }
