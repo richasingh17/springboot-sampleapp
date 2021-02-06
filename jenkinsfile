@@ -1,36 +1,41 @@
 properties([pipelineTriggers([githubPush()])])
  
 pipeline {
-    /* specify nodes for executing */
-    agent {
-        label 'github-ci'
-    }
- 
-    stages {
-        /* checkout repo */
-        stage('Checkout SCM') {
-            steps {
-                checkout([
-                 $class: 'GitSCM',
-                 branches: [[name: 'master']],
-                 userRemoteConfigs: [[
-                    url: '',
-                    credentialsId: '',
-                 ]]
-                ])
+   agent any
+   stages {
+      stage('Checkout SCM') {
+         agent none
+         steps {
+            echo "working..."
+            checkout([
+             $class: 'GitSCM',
+             branches: [[name: 'master']],
+             userRemoteConfigs: [[
+                url: 'https://github.com/richasingh17/springboot-sampleapp.git',
+                credentialsId: 'f28c38a6-c27b-4dfe-b7c5-300f532afa93',
+             ]]
+            ])
+         }
+      }
+      stage('Clone') {
+         agent none
+         steps {
+            git 'https://github.com/richasingh17/springboot-sampleapp.git'
+         }
+      }
+      stage('Build') {
+         agent none
+         steps {
+            sh 'ls'
+            sh 'mvnw package'
             }
-        }
-         stage('Do the deployment') {
-            steps {
-                echo ">> Run deploy applications "
-            }
-        }
-    }
- 
-    /* Cleanup workspace */
-    post {
-       always {
-           deleteDir()
-       }
+      }
+      stage('Deploy') {
+          steps {
+              dir("/var/lib/jenkins/springboot-sampleapp/target"){
+              sh 'cp -r spring-petclinic*.jar /mvn/artefact'
+          }
+          }
+      }
    }
 }
