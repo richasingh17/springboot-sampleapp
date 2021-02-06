@@ -8,7 +8,7 @@ pipeline {
         /* checkout repo */
         stage('Checkout SCM') {
             steps {
-                echo "please work this time..."
+                echo "please work this time... vs 1.4"
             }
         }
     }
